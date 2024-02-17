@@ -1,0 +1,829 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/v1/login": {
+            "post": {
+                "tags": [
+                    "Login"
+                ],
+                "summary": "Login",
+                "description": "Login",
+                "operationId": "Login",
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "description": "Enter User Email",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "user@yopmail.com"
+                    },
+                    {
+                        "name": "password",
+                        "in": "query",
+                        "description": "Enter Password",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "123456"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "json schema",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "404": {
+                        "description": "Invalid Request"
+                    }
+                }
+            }
+        },
+        "/api/v1/signup": {
+            "post": {
+                "tags": [
+                    "Signup"
+                ],
+                "summary": "Signup",
+                "description": "User Signup",
+                "operationId": "Signup",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "Enter User Name(Only alphabets, Special characters not allowed and Space allowed)",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "Kartik"
+                    },
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "description": "Enter User Email",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "user@yopmail.com"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "json schema",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "404": {
+                        "description": "Invalid Request"
+                    }
+                }
+            }
+        },
+        "/api/v1/create-category": {
+            "post": {
+                "tags": [
+                    "Category Master"
+                ],
+                "summary": "Create Category",
+                "description": "Create Category",
+                "operationId": "createCategory",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "Enter Category Name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "Category 1"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "json schema",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "404": {
+                        "description": "Invalid Request"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/edit-category": {
+            "post": {
+                "tags": [
+                    "Category Master"
+                ],
+                "summary": "Edit Category",
+                "description": "Edit Category",
+                "operationId": "editCategory",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "Enter Category Id",
+                        "required": true,
+                        "schema": {
+                            "type": "number"
+                        },
+                        "example": "1"
+                    },
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "Enter Category Name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "Home Appliances"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "json schema",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "404": {
+                        "description": "Invalid Request"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/category-list": {
+            "post": {
+                "tags": [
+                    "Category Master"
+                ],
+                "summary": "Category List",
+                "description": "Category List",
+                "operationId": "categoryList",
+                "parameters": [
+                    {
+                        "name": "start",
+                        "in": "query",
+                        "description": "no of record you already get",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "0"
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "no of record you want to get",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "10"
+                    },
+                    {
+                        "name": "search",
+                        "in": "query",
+                        "description": "search by category name",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": ""
+                    },
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "Category Name",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": ""
+                    },
+                    {
+                        "name": "status",
+                        "in": "query",
+                        "description": "Category Status (Active or Inactive)",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": ""
+                    },
+                    {
+                        "name": "sort_by",
+                        "in": "query",
+                        "description": "Sort by column (name)",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": ""
+                    },
+                    {
+                        "name": "sort_order",
+                        "in": "query",
+                        "description": "Sort order (asc or desc)",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": ""
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "json schema",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "404": {
+                        "description": "Invalid Request"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/view-category": {
+            "post": {
+                "tags": [
+                    "Category Master"
+                ],
+                "summary": "View Category",
+                "description": "View Category",
+                "operationId": "viewCategory",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "Enter Category Id",
+                        "required": true,
+                        "schema": {
+                            "type": "number"
+                        },
+                        "example": "1"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "json schema",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "404": {
+                        "description": "Invalid Request"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/category-status-change": {
+            "post": {
+                "tags": [
+                    "Category Master"
+                ],
+                "summary": "Category Status Change",
+                "description": "Category Status Change",
+                "operationId": "categoryStatusChange",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "Enter Category Id",
+                        "required": true,
+                        "schema": {
+                            "type": "number"
+                        },
+                        "example": "1"
+                    },
+                    {
+                        "name": "status",
+                        "in": "query",
+                        "description": "Enter Status (Active or Inactive)",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "Inactive"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "json schema",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "404": {
+                        "description": "Invalid Request"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/category-delete": {
+            "post": {
+                "tags": [
+                    "Category Master"
+                ],
+                "summary": "Category Delete",
+                "description": "Category Delete",
+                "operationId": "categoryDelete",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "Enter Category Id",
+                        "required": true,
+                        "schema": {
+                            "type": "number"
+                        },
+                        "example": "1"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "json schema",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "404": {
+                        "description": "Invalid Request"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/upload-image": {
+            "post": {
+                "tags": [
+                    "Product"
+                ],
+                "summary": "Update Product Image",
+                "operationId": "Update Product Image",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "product_image": {
+                                        "description": "Upload Product image",
+                                        "type": "file"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "json schema",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "404": {
+                        "description": "Invalid Request"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/create-product": {
+            "post": {
+                "tags": [
+                    "Product"
+                ],
+                "summary": "Create Product",
+                "description": "Create Product",
+                "operationId": "createProduct",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "Enter Product Name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "32 Inch TV"
+                    },
+                    {
+                        "name": "description",
+                        "in": "query",
+                        "description": "Enter Product Description",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+                    },
+                    {
+                        "name": "sku",
+                        "in": "query",
+                        "description": "Enter Product SKU",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "TV32MI"
+                    },
+                    {
+                        "name": "price",
+                        "in": "query",
+                        "description": "Enter Product Price",
+                        "required": true,
+                        "schema": {
+                            "type": "number"
+                        },
+                        "example": "1000.00"
+                    },
+                    {
+                        "name": "categories",
+                        "in": "query",
+                        "description": "Enter Product Categories",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "category1,category2"
+                    },
+                    {
+                        "name": "images",
+                        "in": "query",
+                        "description": "Enter Product Images",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "image1,image2"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "json schema",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "404": {
+                        "description": "Invalid Request"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/edit-product": {
+            "post": {
+                "tags": [
+                    "Product"
+                ],
+                "summary": "Edit Product",
+                "description": "Edit Product",
+                "operationId": "editProduct",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "Enter Product Id",
+                        "required": true,
+                        "schema": {
+                            "type": "number"
+                        },
+                        "example": "1"
+                    },
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "Enter Product Name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "32 Inch TV"
+                    },
+                    {
+                        "name": "description",
+                        "in": "query",
+                        "description": "Enter Product Description",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+                    },
+                    {
+                        "name": "sku",
+                        "in": "query",
+                        "description": "Enter Product SKU",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "TV32MI"
+                    },
+                    {
+                        "name": "price",
+                        "in": "query",
+                        "description": "Enter Product Price",
+                        "required": true,
+                        "schema": {
+                            "type": "number"
+                        },
+                        "example": "1000.00"
+                    },
+                    {
+                        "name": "categories",
+                        "in": "query",
+                        "description": "Enter Product Categories",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "category1,category2"
+                    },
+                    {
+                        "name": "images",
+                        "in": "query",
+                        "description": "Enter Product Images",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "image1,image2"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "json schema",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "404": {
+                        "description": "Invalid Request"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/product-list": {
+            "post": {
+                "tags": [
+                    "Product"
+                ],
+                "summary": "Product List",
+                "description": "Product List",
+                "operationId": "productList",
+                "parameters": [
+                    {
+                        "name": "start",
+                        "in": "query",
+                        "description": "no of record you already get",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "0"
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "no of record you want to get",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "10"
+                    },
+                    {
+                        "name": "search",
+                        "in": "query",
+                        "description": "search by Product name, sku",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": ""
+                    },
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "Product Name",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": ""
+                    },
+                    {
+                        "name": "category",
+                        "in": "query",
+                        "description": "Category Name",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": ""
+                    },
+                    {
+                        "name": "price_range",
+                        "in": "query",
+                        "description": "Price Range",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "0-10000"
+                    },
+                    {
+                        "name": "sort_by",
+                        "in": "query",
+                        "description": "Sort by column (name)",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": ""
+                    },
+                    {
+                        "name": "sort_order",
+                        "in": "query",
+                        "description": "Sort order (asc or desc)",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": ""
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "json schema",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "404": {
+                        "description": "Invalid Request"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/view-product": {
+            "post": {
+                "tags": [
+                    "Product"
+                ],
+                "summary": "View Product",
+                "description": "View Product",
+                "operationId": "viewProduct",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "Enter Product Id",
+                        "required": true,
+                        "schema": {
+                            "type": "number"
+                        },
+                        "example": "1"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "json schema",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "404": {
+                        "description": "Invalid Request"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/delete-product": {
+            "post": {
+                "tags": [
+                    "Product"
+                ],
+                "summary": "Delete Product",
+                "description": "Delete Product",
+                "operationId": "deleteProduct",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "Enter Product Id",
+                        "required": true,
+                        "schema": {
+                            "type": "number"
+                        },
+                        "example": "1"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "json schema",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "404": {
+                        "description": "Invalid Request"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "bearerFormat": "JWT",
+                "scheme": "bearer"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Login",
+            "description": ""
+        }
+    ]
+}
